@@ -17,7 +17,7 @@ resource "kubernetes_deployment" "database" {
   spec {
     replicas = 1
 
-    selector {
+      selector {
       match_labels = {
         app = "database"
       }
