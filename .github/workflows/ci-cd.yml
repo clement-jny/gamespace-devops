@@ -1,4 +1,4 @@
-name: Prod Workflow - Build and deploy to production
+name: Prod Workflow - Deploy to production
 
 on:
     # Runs on closed pull request targeting the main branch
@@ -10,68 +10,18 @@ on:
     workflow_dispatch:
 
 jobs:
-    #   Build jobs
-    #   build:
-    # runs-on: ubuntu-latest
-
-    # steps:
-    #   - name: Checkout code
-    #     uses: actions/checkout@v4.2.2
-
-    #   - name: Setup Node
-    #     uses: actions/setup-node@v4.2.0
-    #     with:
-    #       node-version: 22.13.0
-    #       cache: npm
-
-    #   - name: Install dependencies
-    #     run: npm ci
-
-    # - name: Build project
-    #   run: npm run build
-
-    # - name: Upload artifact
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     path: ./next
-
     # Deployment job
     deploy:
         runs-on: ubuntu-latest
 
-        # needs: build
-
         steps:
-            # - name: Download artifact
-            #   use: actions/download-artifact@v4
-            #   with:
-            #     path: ./next
-
-            # - name: Start production project
-            #   run: npm run start
-
-            # - name: Connect to vps & run docker
-            #   uses: appleboy/ssh-action@v1.2.0
-            #   with:
-            #       host: ${{ secrets.HOST }}
-            #       username: ${{ secrets.USERNAME }}
-            #       password: ${{ secrets.PASSWORD }}
-            #       script: docker compose up -d --build
-
-            - name: Deploy to Staging server
-              uses: easingthemes/ssh-deploy@main
+            - name: Connect to vps & run docker
+              uses: appleboy/ssh-action@v1.2.1
               with:
-                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-                  ARGS: "-rlgoDzvc -i"
-                  SOURCE: "dist/"
-                  REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-                  REMOTE_USER: ${{ secrets.REMOTE_USER }}
-                  TARGET: ${{ secrets.REMOTE_TARGET }}
-                  EXCLUDE: "/dist/, /node_modules/"
-                  SCRIPT_BEFORE: |
-                      whoami
-                      ls -al
-                  SCRIPT_AFTER: |
-                      whoami
-                      ls -al
-                      echo $RSYNC_STDOUT
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  password: ${{ secrets.PASSWORD }}
+                  script: |
+                      git clone https://github.com/your-repo/gamespace-devops.git
+                      cd gamespace-devops
+                      docker compose up -f compose.prod.yml --build -d

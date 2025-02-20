@@ -22,7 +22,7 @@ import { hash } from "bcryptjs";
 						price: 10,
 						description: "description-1",
 						productCondition: "GOOD",
-						platform: "PLAYSTATION",
+						platform: "XBOX",
 						images: {
 							create: [
 								{
@@ -36,11 +36,11 @@ import { hash } from "bcryptjs";
 						price: 20,
 						description: "description-2",
 						productCondition: "POOR",
-						platform: "NINTENDO",
+						platform: "PLAYSTATION",
 						images: {
 							create: [
 								{
-									url: "/images/spiderman2.jpg",
+									url: "/images/spiderman2.png",
 								},
 							],
 						},
@@ -68,7 +68,7 @@ import { hash } from "bcryptjs";
 						price: 10,
 						description: "description-1",
 						productCondition: "GOOD",
-						platform: "PLAYSTATION",
+						platform: "NINTENDO",
 						images: {
 							create: [
 								{
@@ -82,7 +82,7 @@ import { hash } from "bcryptjs";
 						price: 20,
 						description: "description-2",
 						productCondition: "POOR",
-						platform: "NINTENDO",
+						platform: "PLAYSTATION",
 						images: {
 							create: [
 								{
@@ -127,7 +127,7 @@ import { hash } from "bcryptjs";
 						title: "product-2",
 						price: 20,
 						description: "description-2",
-						productCondition: "POOR",
+						productCondition: "GOOD",
 						platform: "NINTENDO",
 						images: {
 							create: [
