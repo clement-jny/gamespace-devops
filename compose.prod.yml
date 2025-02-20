@@ -13,8 +13,17 @@ services:
             - .:/app
             - /app/node_modules
             - /app/.next
-        ports:
-            - ${WEB_HOST_PORT}:${WEB_DOCKER_PORT}
+        # ports:
+        #     - ${WEB_HOST_PORT}:${WEB_DOCKER_PORT}
+        networks:
+            - traefik_default
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.gamespace_www.entrypoints=websecure
+            - traefik.http.routers.gamespace_www.tls=true
+            - traefik.http.routers.gamespace_www.tls.certresolver=production
+            - traefik.http.routers.gamespace_www.rule=Host(`gamespace.clement-jny.fr`) # ${DOMAIN}
+            - traefik.http.services.gamespace_www.loadbalancer.server.port=${WWW_DOCKER_PORT}
         links:
             - ${DB_HOST}
         depends_on:
@@ -29,10 +38,13 @@ services:
             MARIADB_DATABASE: ${DB_NAME}
             MARIADB_USER: ${DB_USER}
             MARIADB_PASSWORD: ${DB_PASSWORD}
+            TZ: "Europe/Paris"
         ports:
             - ${DB_HOST_PORT}:${DB_DOCKER_PORT}
         volumes:
             - mysql_data:/var/lib/mysql
+        networks:
+            - traefik_default
 
     gamespace_adminer:
         container_name: gamespace_adminer_prod
@@ -46,7 +58,13 @@ services:
         depends_on:
             - ${DB_HOST}
         restart: always
+        networks:
+            - traefik_default
 
 volumes:
     mysql_data:
         driver: local
+
+networks:
+    traefik_default:
+        external: true

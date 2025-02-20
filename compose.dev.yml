@@ -29,10 +29,11 @@ services:
             MARIADB_DATABASE: ${DB_NAME}
             MARIADB_USER: ${DB_USER}
             MARIADB_PASSWORD: ${DB_PASSWORD}
+            TZ: "Europe/Paris"
         ports:
             - ${DB_HOST_PORT}:${DB_DOCKER_PORT}
         volumes:
-            - ./.mariadb:/var/lib/mysql
+            - mysql_data:/var/lib/mysql
 
     gamespace_adminer:
         container_name: gamespace_adminer_dev
@@ -46,3 +47,7 @@ services:
         depends_on:
             - ${DB_HOST}
         restart: always
+
+volumes:
+    mysql_data:
+        driver: local
