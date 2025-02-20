@@ -1,152 +1,152 @@
-import { db } from '../lib/prisma';
-import { hash } from 'bcryptjs';
+import { db } from "../lib/prisma";
+import { hash } from "bcryptjs";
 
 (async () => {
 	await db.user.deleteMany({});
 
 	await db.user.create({
 		data: {
-			username: 'victor',
-			password: await hash('victor', 12),
+			username: "victor",
+			password: await hash("victor", 12),
 			address: {
 				create: {
-					street: '1 rue de la paix',
-					city: 'Paris',
-					zipCode: '75000',
+					street: "1 rue de la paix",
+					city: "Paris",
+					zipCode: "75000",
 				},
 			},
 			products: {
 				create: [
 					{
-						title: 'product-1',
+						title: "product-1",
 						price: 10,
-						description: 'description-1',
-						productCondition: 'GOOD',
-						platform: 'PLAYSTATION',
+						description: "description-1",
+						productCondition: "GOOD",
+						platform: "PLAYSTATION",
 						images: {
 							create: [
 								{
-									url: '/images/rocket_game.jpg'
-								}
-							]
-						}
+									url: "/images/rocket_game.jpg",
+								},
+							],
+						},
 					},
 					{
-						title: 'product-2',
+						title: "product-2",
 						price: 20,
-						description: 'description-2',
-						productCondition: 'POOR',
-						platform: 'NINTENDO',
+						description: "description-2",
+						productCondition: "POOR",
+						platform: "NINTENDO",
 						images: {
 							create: [
 								{
-									url: '/images/spiderman2.jpg'
-								}
-							]
-						}
-					}
-				]
-			}
-		}
+									url: "/images/spiderman2.jpg",
+								},
+							],
+						},
+					},
+				],
+			},
+		},
 	});
 
 	await db.user.create({
 		data: {
-			username: 'julien',
-			password: await hash('julien', 12),
+			username: "julien",
+			password: await hash("julien", 12),
 			address: {
 				create: {
-					street: '5 allée des mimosas',
-					city: 'Strasbourg',
-					zipCode: '67000',
+					street: "5 allée des mimosas",
+					city: "Strasbourg",
+					zipCode: "67000",
 				},
 			},
 			products: {
 				create: [
 					{
-						title: 'product-1',
+						title: "product-1",
 						price: 10,
-						description: 'description-1',
-						productCondition: 'GOOD',
-						platform: 'PLAYSTATION',
+						description: "description-1",
+						productCondition: "GOOD",
+						platform: "PLAYSTATION",
 						images: {
 							create: [
 								{
-									url: '/images/faefarm.jpg'
-								}
-							]
-						}
+									url: "/images/faefarm.png",
+								},
+							],
+						},
 					},
 					{
-						title: 'product-2',
+						title: "product-2",
 						price: 20,
-						description: 'description-2',
-						productCondition: 'POOR',
-						platform: 'NINTENDO',
+						description: "description-2",
+						productCondition: "POOR",
+						platform: "NINTENDO",
 						images: {
 							create: [
 								{
-									url: '/images/fc24.jpg'
-								}
-							]
-						}
-					}
-				]
-			}
-		}
+									url: "/images/fc24.jpg",
+								},
+							],
+						},
+					},
+				],
+			},
+		},
 	});
 
 	await db.user.create({
 		data: {
-			username: 'clement',
-			password: await hash('clement', 12),
+			username: "clement",
+			password: await hash("clement", 12),
 			address: {
 				create: {
-					street: '10 place de la république',
-					city: 'Armentières',
-					zipCode: '59280',
+					street: "10 place de la république",
+					city: "Armentières",
+					zipCode: "59280",
 				},
 			},
 			products: {
 				create: [
 					{
-						title: 'product-1',
+						title: "product-1",
 						price: 10,
-						description: 'description-1',
-						productCondition: 'GOOD',
-						platform: 'PLAYSTATION',
+						description: "description-1",
+						productCondition: "GOOD",
+						platform: "PLAYSTATION",
 						images: {
 							create: [
 								{
-									url: '/images/gow_ragnarok.jpeg'
-								}
-							]
-						}
+									url: "/images/gow_ragnarok.jpeg",
+								},
+							],
+						},
 					},
 					{
-						title: 'product-2',
+						title: "product-2",
 						price: 20,
-						description: 'description-2',
-						productCondition: 'POOR',
-						platform: 'NINTENDO',
+						description: "description-2",
+						productCondition: "POOR",
+						platform: "NINTENDO",
 						images: {
 							create: [
 								{
-									url: '/images/mario_luigi_voyage_centre_bowser.jpg'
-								}
-							]
-						}
-					}
-				]
-			}
-		}
+									url: "/images/mario_luigi_voyage_centre_bowser.jpg",
+								},
+							],
+						},
+					},
+				],
+			},
+		},
 	});
 })()
 	.then(async () => {
-		await db.$disconnect()
+		await db.$disconnect();
 	})
 	.catch(async (e) => {
-		console.error(e)
-		await db.$disconnect()
-		process.exit(1)
-	})
+		console.error(e);
+		await db.$disconnect();
+		process.exit(1);
+	});
