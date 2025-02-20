@@ -22,6 +22,7 @@ jobs:
                   username: ${{ secrets.USERNAME }}
                   password: ${{ secrets.PASSWORD }}
                   script: |
+                      rm -rf gamespace-devops
                       git clone https://github.com/clement-jny/gamespace-devops.git
                       cd gamespace-devops
                       docker compose -f compose.prod.yml up --build -d
