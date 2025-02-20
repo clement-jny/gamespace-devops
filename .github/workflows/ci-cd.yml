@@ -24,4 +24,4 @@ jobs:
                   script: |
                       git clone https://github.com/clement-jny/gamespace-devops.git
                       cd gamespace-devops
-                      docker compose-f compose.prod.yml up --build -d
+                      docker compose -f compose.prod.yml up --build -d
