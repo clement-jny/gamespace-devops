@@ -23,7 +23,7 @@ services:
             - traefik.http.routers.gamespace_www.tls=true
             - traefik.http.routers.gamespace_www.tls.certresolver=production
             - traefik.http.routers.gamespace_www.rule=Host(`gamespace.clement-jny.fr`) # ${DOMAIN}
-            - traefik.http.services.gamespace_www.loadbalancer.server.port=${WWW_DOCKER_PORT}
+            - traefik.http.services.gamespace_www.loadbalancer.server.port=${WEB_DOCKER_PORT}
         links:
             - ${DB_HOST}
         depends_on:
