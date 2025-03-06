@@ -1,7 +1,8 @@
 ## Run
 
 ```bash
-docker compose up -d
+docker compose -f compose.dev.yml up
+docker compose -f compose.prod.yml up
 ```
 
 ## Seed the database
@@ -12,18 +13,12 @@ npx prisma db push
 npx prisma db seed
 ```
 
-IMAGE:
-gamespace-devops-gamespace_web
-mariadb:11.6.2
-adminer:latest
+## Images
 
-NAME:
-gamespace_web_dev / gamespace_web_prod
-gamespace_db_dev / gamespace_db_prod
-gamespace_adminer_dev / gamespace_adminer_prod
+![Devops1](public/devops1.png)
 
-in package.json
+![Devops2](public/devops2.png)
 
-<!-- // "prisma": {
-// "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
-// }, -->
+![Devops3](public/devops3.png)
+
+![Devops4](public/devops4.png)
